@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1014647158903",
+    "firebase_url": "https://tutorialfirebase-d4acc.firebaseio.com",
+    "project_id": "tutorialfirebase-d4acc",
+    "storage_bucket": "tutorialfirebase-d4acc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014647158903:android:620948afe5022048712e72",
+        "android_client_info": {
+          "package_name": "com.informatica.tutorialfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014647158903-cb6qajjbksvudaqnjr66ld60tqjvnl4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATFUo-GbuyxcHnRj54LuFVjFhYnlElOrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014647158903-cb6qajjbksvudaqnjr66ld60tqjvnl4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
