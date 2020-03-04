@@ -53,13 +53,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ButterKnife.bind(this);
-        init();
-        obtenerListaAlumnos();
-    }
-    private void init(){
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         ListaAlumnos.setLayoutManager(linearLayoutManager);
         db = FirebaseFirestore.getInstance();
+        obtenerListaAlumnos();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
