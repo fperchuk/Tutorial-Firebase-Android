@@ -1,6 +1,10 @@
 package com.informatica.tutorialfirebase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class alumno {
+    private String id;
     private String nombre;
     private String division;
     private int calificacion;
@@ -15,6 +19,22 @@ public class alumno {
         this.calificacion = calificacion;
         this.foto = foto;
     }
+
+    public alumno(String id, String nombre, String division, int calificacion) {
+        this.id=id;
+        this.nombre=nombre;
+        this.division=division;
+        this.calificacion=calificacion;
+    }
+    public alumno(String nombre, String division, int calificacion) {
+        this.nombre=nombre;
+        this.division=division;
+        this.calificacion=calificacion;
+    }
+
+    public String getId(){return  id;}
+
+    public void setId(String id){this.id=id;}
 
     public String getNombre() {
         return nombre;
@@ -46,5 +66,14 @@ public class alumno {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public Map<String, Object> toMap() {
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("nombre", this.nombre);
+        result.put("division", this.division);
+        result.put("calificacion", this.calificacion);
+        return result;
     }
 }

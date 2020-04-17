@@ -1,17 +1,26 @@
 package com.informatica.tutorialfirebase;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +33,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView ListaAlumnos;
 
     private FirebaseFirestore db;
-    private FirestoreRecyclerAdapter adapter;
     LinearLayoutManager linearLayoutManager;
+    private AlumnoAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Redirigo hacia la pantalla para agregar un nuevo alumno
+                Intent intent = new Intent(MainActivity.this, AgregarEditar.class);
+                startActivity(intent);
             }
         });
         ButterKnife.bind(this);
@@ -79,74 +92,21 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void obtenerListaAlumnos(){
-        //Hago una query para obtener los alumnos guardados en la BD
-        Query query = db.collection("alumnos");
-
-        FirestoreRecyclerOptions<alumno> response = new FirestoreRecyclerOptions.Builder<alumno>()
-                .setQuery(query, alumno.class)
-                .build();
-
-        adapter = new FirestoreRecyclerAdapter<alumno, AlumnosHolder>(response) {
+    private void obtenerListaAlumnos() {
+        db.collection("alumnos").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onBindViewHolder(AlumnosHolder holder, int position, alumno model) {
-                progressBar.setVisibility(View.GONE);
-                holder.nombre.setText(model.getNombre());
-                holder.division.setText(model.getDivision());
-                holder.calificacion.setText(Integer.toString(model.getCalificacion()));
-                /*Glide.with(getApplicationContext())
-                        .load(model.getImage())
-                        .into(holder.imageView);*/
-/*
-                holder.itemView.setOnClickListener(v -> {
-
-                });*/
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
+                List<alumno> alumnos = new ArrayList<>();
+                for (DocumentSnapshot document : snapshots) {
+                    alumno alum = document.toObject(alumno.class);
+                    alum.setId(document.getId());
+                    alumnos.add(alum);
+                }
+                mAdapter = new AlumnoAdapter(alumnos, getApplicationContext(), db);
+                ListaAlumnos.setAdapter(mAdapter);
             }
-
-            @Override
-            public AlumnosHolder onCreateViewHolder(ViewGroup group, int i) {
-                View view = LayoutInflater.from(group.getContext())
-                        .inflate(R.layout.list_item, group, false);
-
-                return new AlumnosHolder(view);
-            }
-
-            @Override
-            public void onError(FirebaseFirestoreException e) {
-                Log.e("error", e.getMessage());
-            }
-        };
-
-        adapter.notifyDataSetChanged();
-        ListaAlumnos.setAdapter(adapter);
+        });
     }
 
-    public class AlumnosHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.nombre)
-        TextView nombre;
-        /*@BindView(R.id.image)
-        CircleImageView imageView;*/
-        @BindView(R.id.division)
-        TextView division;
-        @BindView(R.id.calificacion)
-        TextView calificacion;
-
-        public AlumnosHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
 
 }

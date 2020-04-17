@@ -14,25 +14,41 @@
         android:layout_marginTop="15dp"
         android:textSize="20dp"
         android:textAlignment="center"
+        android:id="@+id/lblTitulo"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="Nombre"/>
+        android:hint="Nombre"
+        android:id="@+id/txtNombre"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="División"/>
+        android:hint="División"
+        android:id="@+id/txtDivision"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="Calificación"/>
+        android:hint="Calificación"
+        android:id="@+id/txtCalificacion"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="AGREGAR"/>
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:text="AGREGAR"
+        android:id="@+id/btnAgregar"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@color/colorWarning"
+        android:textColor="@color/colorWhite"
+        android:text="ELIMINAR"
+        android:id="@+id/btnEliminar"
+        android:onClick="btnEliminar"/>
 </LinearLayout>
