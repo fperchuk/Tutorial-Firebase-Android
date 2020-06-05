@@ -14,11 +14,11 @@ import butterknife.ButterKnife;
 
 public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder> {
 
-    private List<alumno> alumnos;
+    private List<Alumno> alumnos;
     private Context context;
     private FirebaseFirestore firestoreDB;
 
-    public AlumnoAdapter(List<alumno> alumnos, Context context, FirebaseFirestore firestoreDB) {
+    public AlumnoAdapter(List<Alumno> alumnos, Context context, FirebaseFirestore firestoreDB) {
         this.alumnos = alumnos;
         this.context = context;
         this.firestoreDB = firestoreDB;
@@ -34,7 +34,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
     @Override
     public void onBindViewHolder(AlumnoAdapter.ViewHolder holder, int position) {
         final int itemPosition = position;
-        final alumno alum = alumnos.get(itemPosition);
+        final Alumno alum = alumnos.get(itemPosition);
        // progressBar.setVisibility(View.GONE);
         holder.nombre.setText(alum.getNombre());
         holder.division.setText(alum.getDivision());

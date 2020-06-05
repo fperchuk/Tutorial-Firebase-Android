@@ -3,30 +3,30 @@ package com.informatica.tutorialfirebase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class alumno {
+public class Alumno {
     private String id;
     private String nombre;
     private String division;
     private int calificacion;
     private String foto;
 
-    public alumno() {
-    }
-
-    public alumno(String nombre, String division, int calificacion, String foto) {
+    // En caso de tener foto, podés utilizar este constructor
+    /*public Alumno(String nombre, String division, int calificacion, String foto) {
         this.nombre = nombre;
         this.division = division;
         this.calificacion = calificacion;
         this.foto = foto;
-    }
+    }*/
+    public Alumno(){}
 
-    public alumno(String id, String nombre, String division, int calificacion) {
+
+    public Alumno(String id, String nombre, String division, int calificacion) {
         this.id=id;
         this.nombre=nombre;
         this.division=division;
         this.calificacion=calificacion;
     }
-    public alumno(String nombre, String division, int calificacion) {
+    public Alumno(String nombre, String division, int calificacion) {
         this.nombre=nombre;
         this.division=division;
         this.calificacion=calificacion;

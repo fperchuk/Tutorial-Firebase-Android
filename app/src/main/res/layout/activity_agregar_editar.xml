@@ -4,51 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarEditar"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".AgregarEditar">
+
     <TextView
+        android:id="@+id/lblTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Alumno"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="20dp"
+        android:text="Agregar Alumno"
         android:textAlignment="center"
-        android:id="@+id/lblTitulo"
-        />
+        android:textSize="20dp" />
+
     <EditText
+        android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="Nombre"
-        android:id="@+id/txtNombre"/>
+        android:hint="Nombre" />
+
     <EditText
+        android:id="@+id/txtDivision"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="División"
-        android:id="@+id/txtDivision"/>
+        android:hint="División" />
+
     <EditText
+        android:id="@+id/txtCalificacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="Calificación"
-        android:id="@+id/txtCalificacion"/>
+        android:hint="Calificación" />
+
     <Button
+        android:id="@+id/btnAgregar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorWhite"
         android:text="AGREGAR"
-        android:id="@+id/btnAgregar"/>
+        android:textColor="@color/colorWhite" />
+
     <Button
+        android:id="@+id/btnEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@color/colorWarning"
-        android:textColor="@color/colorWhite"
+        android:onClick="btnEliminar"
         android:text="ELIMINAR"
-        android:id="@+id/btnEliminar"
-        android:onClick="btnEliminar"/>
+        android:textColor="@color/colorWhite" />
 </LinearLayout>

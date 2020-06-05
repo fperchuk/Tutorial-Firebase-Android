@@ -86,8 +86,7 @@ public class AgregarEditar extends AppCompatActivity {
                 } else {
                     AgregarAlumno(nombre, division, calificacion);
                 }
-                Intent intent = new Intent(AgregarEditar.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -102,8 +101,7 @@ public class AgregarEditar extends AppCompatActivity {
 
             public void onClick(DialogInterface dialog, int whichButton) {
                 EliminarAlumno(id);
-                Intent intent = new Intent(AgregarEditar.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
 
         })
@@ -116,7 +114,7 @@ public class AgregarEditar extends AppCompatActivity {
 
     }
     private void ActualizarAlumno(String id, String nombre, String division, int calificacion) {
-        Map<String, Object> alumno = (new alumno(id, nombre, division, calificacion)).toMap();
+        Map<String, Object> alumno = (new Alumno(id, nombre, division, calificacion)).toMap();
 
         db.collection("alumnos")
                 .document(id)
@@ -137,7 +135,8 @@ public class AgregarEditar extends AppCompatActivity {
     }
 
     private void AgregarAlumno(String nombre, String division, int calificacion) {
-        Map<String, Object> alumno = new alumno(nombre, division, calificacion).toMap();
+        Map<String, Object> alumno = new Alumno(nombre, division, calificacion).toMap();
+
         db.collection("alumnos")
                 .add(alumno)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
